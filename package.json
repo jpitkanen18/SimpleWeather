@@ -1,0 +1,25 @@
+{
+  "name": "ios-api",
+  "version": "0.1.0",
+  "description": "Cool API lol ecks dee",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpitkanen18/iOS-Meme.git"
+  },
+  "author": "JP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpitkanen18/iOS-Meme/issues"
+  },
+  "homepage": "https://github.com/jpitkanen18/iOS-Meme#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.3",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

@@ -1,3 +1,25 @@
-# iOS-Meme
+# SimpleWeather
 
-Cool API lol ecks dee
+Simple weather app with a node API to make it easier to manage
+
+Just a practise project of mine, don't expect it to be commercial quality
+
+## Requirements:
+1. A Mac (or any computer with macOS)
+2. Xcode
+3. Node.js
+4. Time(?)
+
+## Installation:
+<pre><code>#:~ git clone https://github.com/jpitkanen18/SimpleWeather.git
+#:~ cd SimpleWeather
+#:~ npm install
+#:~ npm run start
+</code></pre>
+Create your own "token.json" file and input your openweathermap.org API key there
+
+In the iOS app 
+1. Change development team to your own
+2. Change the URL IP address to your own in the WeatherDetailViewController.swift file
+3. Run
+

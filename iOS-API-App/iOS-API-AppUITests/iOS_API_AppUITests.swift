@@ -1,6 +1,6 @@
 //
-//  iOS_API_AppUITests.swift
-//  iOS-API-AppUITests
+//  SimpleWeatherUITests.swift
+//  SimpleWeatherUITests
 //
 //  Created by Jese on 15.10.2019.
 //  Copyright © 2019 jpitkanen18. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class iOS_API_AppUITests: XCTestCase {
+class SimpleWeatherUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

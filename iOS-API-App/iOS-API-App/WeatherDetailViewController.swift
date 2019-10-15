@@ -1,6 +1,6 @@
 //
 //  WeatherDetailViewController.swift
-//  iOS-API-App
+//  SimpleWeather
 //
 //  Created by Jese on 15.10.2019.
 //  Copyright © 2019 jpitkanen18. All rights reserved.

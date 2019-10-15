@@ -11,12 +11,12 @@ Just a practise project of mine, don't expect it to be commercial quality
 4. Time(?)
 
 ## Installation:
-Create your own "token.json" file and input your openweathermap.org API key there
 <pre><code>#:~ git clone https://github.com/jpitkanen18/SimpleWeather.git
 #:~ cd SimpleWeather
 #:~ npm install
 #:~ npm run start
 </code></pre>
+Create your own "token.json" file and input your openweathermap.org API key there
 
 In the iOS app 
 1. Change development team to your own

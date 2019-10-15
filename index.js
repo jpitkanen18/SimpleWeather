@@ -6,7 +6,7 @@ const api = new XMLHTTPRequest();
 const app = express();
 
 const port = 6969;
-const name = "iOS App API by jpitkanen18";
+const name = "Weather API for iOS by jpitkanen18";
 const version = package.version;
 var weatherData = {
   temperature: Number,

@@ -6,6 +6,8 @@ const api = new XMLHTTPRequest();
 const app = express();
 
 const port = 6969;
+const sleep = waitTimeInMs =>
+  new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 const name = "Weather API for iOS by jpitkanen18";
 const version = package.version;
 var weatherData = {
@@ -20,11 +22,23 @@ app.listen(port, () => {
   console.log(name + "\nVersion: " + version + "\nListening on port: " + port);
 });
 
-app.get("/city=:id", (req, res) => {
-  console.log("Sending weather data for " + req.params.id);
-  request(req.params.id, res, req);
+var time = 0;
+
+app.get("/city=:id&fullData=:bool", async (req, res) => {
+  console.log(req.params.bool);
+  if (req.params.bool == "false") {
+    if (time > 1500) {
+      time = 0;
+    }
+    console.log("Sending weather data for " + req.params.id);
+    time = time + 500;
+    await sleep(time);
+    request(req.params.id, res, req);
+  } else if (req.params.bool == "true") {
+    request(req.params.id, res, req);
+  }
 });
-function request(city, res, req) {
+async function request(city, res, req) {
   var url =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     city +

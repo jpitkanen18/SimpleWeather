@@ -20,8 +20,8 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var dateNow: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        var url = URL(string: "http://YOUR IP HERE/city=" + city + "&fullData=true")
         cityLabel.text = city
-        var url = URL(string: "http://YOUR IP HERE/city=" + city)
         let citySplit = city.split(separator: " ")
         var cityNew = ""
         if citySplit.count > 1{
@@ -29,7 +29,7 @@ class WeatherDetailViewController: UIViewController {
                 cityNew += split + "&"
             }
             let cityFinal = cityNew.dropLast()
-            url = URL(string: "http://YOUR IP HERE/city=" + cityFinal)
+            url = URL(string: "http://YOUR IP HERE/city=" + cityFinal + "&fullData=true")
         }
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
         guard let data = data else {
@@ -49,7 +49,7 @@ class WeatherDetailViewController: UIViewController {
                 self.dateNow.text = "Local time\n" + weatherData.timenow
             }
         }
-        task.resume()
+        task.resume() 
     }
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {

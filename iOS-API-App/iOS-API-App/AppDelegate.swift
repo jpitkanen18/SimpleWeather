@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //initialData()
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         return true
@@ -25,7 +26,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.t4tfutyjjru
     }
-
+    
+    func initialData(){
+        let locations = ["Espoo", "Helsinki", "Turku", "New York", "Miami"]
+        guard let entity = NSEntityDescription.entity(forEntityName: "FetchedWeather", in: persistentContainer.viewContext) else {
+            fatalError("Wäää")
+        }
+        for i in 0...4{
+            let city = NSManagedObject(entity: entity, insertInto: persistentContainer.viewContext)
+            city.setValue(locations[i], forKey: "cityName")
+        }
+        do{
+            try persistentContainer.viewContext.save()
+        }
+        catch {
+                print(error)
+        }
+    }
+    
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

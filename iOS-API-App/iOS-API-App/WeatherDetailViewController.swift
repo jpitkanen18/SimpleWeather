@@ -20,7 +20,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var dateNow: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        var url = URL(string: "http://YOUR IP HERE/city=" + city + "&fullData=true")
+        var url = URL(string: "http://192.168.1.48:6969/city=" + city + "&fullData=true")
         cityLabel.text = city
         let citySplit = city.split(separator: " ")
         var cityNew = ""
@@ -29,7 +29,7 @@ class WeatherDetailViewController: UIViewController {
                 cityNew += split + "&"
             }
             let cityFinal = cityNew.dropLast()
-            url = URL(string: "http://YOUR IP HERE/city=" + cityFinal + "&fullData=true")
+            url = URL(string: "http://192.168.1.48:6969/city=" + cityFinal + "&fullData=true")
         }
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
         guard let data = data else {
@@ -53,12 +53,14 @@ class WeatherDetailViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+            if self.tempLabel.text == "--" {
             let ac = UIAlertController(title: "Weather data not found", message: "Weather data not found for " + self.city, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { UIAlertAction in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(ac, animated: true, completion: nil)
-        })
+            }
+    })
     }
     
     @IBAction func backButton(_ sender: Any) {

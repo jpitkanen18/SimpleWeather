@@ -25,4 +25,4 @@ In the iOS app
 
 ## Screenshots(1)
 
-![alt text](https://github.com/jpitkanen18/SimpleWeather/blob/master/screenshots/Screenshot%202019-11-02%20at%2017.39.03.png?raw=true = 320x180 "Screenshot one(1)")
+![alt text](https://github.com/jpitkanen18/SimpleWeather/blob/master/screenshots/Screenshot%202019-11-02%20at%2017.39.03.png?raw=true = 320x)

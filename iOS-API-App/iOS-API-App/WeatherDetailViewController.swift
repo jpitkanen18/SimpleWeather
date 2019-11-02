@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let ip = "YOUR IP HERE" //This is a global variable which is a big nono but let's just ignore that aight :D
 class WeatherDetailViewController: UIViewController {
     
     var city = ""
@@ -18,10 +18,18 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var sunset: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var dateNow: UILabel!
+    var gradientLayer: CAGradientLayer!
+    var color = UIColor.white
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var url = URL(string: "http://YOUR IP HERE:6969/city=" + city + "&fullData=true")
-        cityLabel.text = city
+        var url = URL(string: "http://" + ip + ":6969/city=" + city + "&fullData=true")
+        tempLabel.textColor = color
+        cityLabel.textColor = color
+        sunrise.textColor = color
+        sunset.textColor = color
+        descLabel.textColor = color
+        dateNow.textColor = color
         let citySplit = city.split(separator: " ")
         var cityNew = ""
         if citySplit.count > 1{
@@ -29,7 +37,7 @@ class WeatherDetailViewController: UIViewController {
                 cityNew += split + "&"
             }
             let cityFinal = cityNew.dropLast()
-            url = URL(string: "http://YOUR IP HERE:6969/city=" + cityFinal + "&fullData=true")
+            url = URL(string: "http://" + ip + ":6969/city=" + cityFinal + "&fullData=true")
         }
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
         guard let data = data else {
@@ -47,6 +55,20 @@ class WeatherDetailViewController: UIViewController {
                 self.sunset.text = "Sunset\n" + weatherData.sunset
                 self.descLabel.text = weatherData.description
                 self.dateNow.text = "Local time\n" + weatherData.timenow
+                let temp = Int(weatherData.temperature.dropLast(2))!
+                let tcell = WeatherTableViewCell()
+                switch temp{
+                case 0...5:
+                    self.createGradientLayer(colors: tcell.coldColor)
+                case 5...24:
+                    self.createGradientLayer(colors: tcell.warmColor)
+                case let temp where temp < 0:
+                    self.createGradientLayer(colors: tcell.subzero)
+                case let temp where temp > 35:
+                    self.createGradientLayer(colors: tcell.hotColor)
+                default:
+                    self.createGradientLayer(colors: tcell.coldColor)
+                }
             }
         }
         task.resume() 
@@ -65,6 +87,18 @@ class WeatherDetailViewController: UIViewController {
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func createGradientLayer(colors: [CGColor]) {
+        
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        gradientLayer.colors = colors
+        gradientLayer.masksToBounds = false
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: -0.5)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
     }
     
 

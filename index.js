@@ -45,6 +45,8 @@ async function request(city, res, req) {
     "&APPID=" +
     token.token;
   console.log(url);
+  time += 500;
+  await sleep(time);
   api.open("GET", url, true);
   api.send();
   api.onreadystatechange = function() {
@@ -55,34 +57,32 @@ async function request(city, res, req) {
       weatherData.description = responseHandler.weather[0].description;
       weatherData.sunrise = getDate(responseHandler.sys.sunrise);
       weatherData.sunset = getDate(responseHandler.sys.sunset);
-      weatherData.timenow = getDate(responseHandler.dt);
+      weatherData.timenow = getDate2(
+        responseHandler.dt,
+        responseHandler.timezone
+      );
       console.log(weatherData);
       res.send(weatherData);
     }
   };
 }
+
+function getDate2(UNIX_timestamp, offset) {
+  var a = new Date(UNIX_timestamp * 1000);
+  var offseth = offset / 60 / 60;
+  var offsetm = offset / 60;
+  a.setUTCDate(a.getUTCDate() + offset);
+  var hours = a.getUTCHours();
+  var mins = a.getUTCMinutes();
+  var secs = a.getUTCSeconds();
+  var time = hours + ":" + mins + ":" + secs;
+  return time;
+}
 function getDate(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);
-  var months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
-  var time = hour + ":" + min + ":" + sec;
+  var hours = a.getUTCHours();
+  var mins = a.getUTCMinutes();
+  var secs = a.getUTCSeconds();
+  var time = hours + ":" + mins + ":" + secs + " UTC";
   return time;
 }

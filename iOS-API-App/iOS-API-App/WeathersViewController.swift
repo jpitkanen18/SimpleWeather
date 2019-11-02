@@ -118,7 +118,7 @@ class WeathersViewController: UITableViewController {
     }
     func getTemp(city: String, cell: UITableViewCell, row: Int){
         let tcell = cell as! WeatherTableViewCell
-        var url = URL(string: "http://YOUR IP HERE:6969/city=" + locations[row] + "&fullData=false")
+        var url = URL(string: "http://" + ip + ":6969/city=" + locations[row] + "&fullData=false")
         let citySplit = city.split(separator: " ")
         var cityNew = ""
         if citySplit.count > 1{
@@ -126,7 +126,7 @@ class WeathersViewController: UITableViewController {
                 cityNew += split + "&"
             }
             let cityFinal = cityNew.dropLast()
-            url = URL(string: "http://YOUR IP HERE:6969/city=" + cityFinal + "&fullData=false")
+            url = URL(string: "http://" + ip + ":6969/city=" + cityFinal + "&fullData=false")
         }
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
         guard let data = data else {
@@ -141,6 +141,19 @@ class WeathersViewController: UITableViewController {
                 print(weatherData)
                 
                 tcell.temperatureLabel.text = weatherData.temperature
+                let temp = Int(weatherData.temperature.dropLast(2))!
+                switch temp{
+                case 0...5:
+                    tcell.gradientLayer.colors = tcell.coldColor
+                case 5...24:
+                    tcell.gradientLayer.colors = tcell.warmColor
+                case let temp where temp < 0:
+                    tcell.gradientLayer.colors = tcell.subzero
+                case let temp where temp > 25:
+                    tcell.gradientLayer.colors = tcell.hotColor
+                default:
+                    tcell.gradientLayer.colors = tcell.coldColor
+                }
             }
         }
         task.resume()

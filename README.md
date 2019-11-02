@@ -1,5 +1,8 @@
 # SimpleWeather
 
+[![language](https://img.shields.io/badge/language-Swift%204.2-orange.svg)](https://developer.apple.com/swift/)
+[![platform](https://img.shields.io/badge/iOS-13.0-lightgrey.svg)](https://img.shields.io/badge/iOS-13.0-lightgrey.svg)
+
 Simple weather app with a node API to make it easier to manage
 
 Just a practise project of mine, don't expect it to be commercial quality

@@ -23,7 +23,7 @@ Create your own "token.json" file and input your openweathermap.org API key ther
 
 In the iOS app 
 1. Change development team to your own
-2. Change the URL IP address to your own in the WeatherDetailViewController.swift and WeathersViewController.swift files
+2. Change the IP address variable in the WeatherDetailViewController.swift file to your local IP
 3. Run
 
 ## Screenshots(1)

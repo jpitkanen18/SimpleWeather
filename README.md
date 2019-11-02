@@ -23,3 +23,6 @@ In the iOS app
 2. Change the URL IP address to your own in the WeatherDetailViewController.swift and WeathersViewController.swift files
 3. Run
 
+## Screenshots(1)
+
+![alt text](https://github.com/jpitkanen18/SimpleWeather/blob/master/screenshots/Screenshot%202019-11-02%20at%2017.39.03.png?raw=true "Screenshot one(1)")

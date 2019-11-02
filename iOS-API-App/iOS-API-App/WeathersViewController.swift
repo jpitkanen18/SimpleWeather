@@ -77,14 +77,6 @@ class WeathersViewController: UITableViewController {
         cell.backgroundColor = UIColor.white
         cell.contentView.backgroundColor = UIColor.white
         cell.contentView.clipsToBounds = true
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 65))
-        whiteRoundedView.layer.backgroundColor = UIColor.systemBlue.cgColor
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 10.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.2
-        cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubviewToBack(whiteRoundedView)
         DispatchQueue.main.async {
             if cell.temperatureLabel.text == "--"{
                 self.getTemp(city: self.locations[indexPath.row], cell: cell, row: indexPath.row)
@@ -126,7 +118,7 @@ class WeathersViewController: UITableViewController {
     }
     func getTemp(city: String, cell: UITableViewCell, row: Int){
         let tcell = cell as! WeatherTableViewCell
-        var url = URL(string: "http://192.168.1.48:6969/city=" + locations[row] + "&fullData=false")
+        var url = URL(string: "http://YOUR IP HERE:6969/city=" + locations[row] + "&fullData=false")
         let citySplit = city.split(separator: " ")
         var cityNew = ""
         if citySplit.count > 1{
@@ -134,7 +126,7 @@ class WeathersViewController: UITableViewController {
                 cityNew += split + "&"
             }
             let cityFinal = cityNew.dropLast()
-            url = URL(string: "http://192.168.1.48:6969/city=" + cityFinal + "&fullData=false")
+            url = URL(string: "http://YOUR IP HERE:6969/city=" + cityFinal + "&fullData=false")
         }
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
         guard let data = data else {

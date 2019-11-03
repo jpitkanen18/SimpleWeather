@@ -11,9 +11,10 @@
 class WeatherTableViewCell: UITableViewCell {
     var gradientLayer: CAGradientLayer!
     let coldColor = [UIColor(red:0.00, green:0.45, blue:1.00, alpha:1.0).cgColor, UIColor(red:0.00, green:0.90, blue:1.00, alpha:1.0).cgColor]
-    let warmColor = [UIColor(red:0.80, green:0.47, blue:0.00, alpha:1.0).cgColor, UIColor(red:1.00, green:0.78, blue:0.00, alpha:1.0).cgColor]
-    let hotColor = [UIColor(red:0.91, green:0.62, blue:0.02, alpha:1.0).cgColor, UIColor(red:1.00, green:0.17, blue:0.00, alpha:1.0).cgColor]
-    let subzero = [UIColor(red:0.00, green:0.65, blue:1.00, alpha:1.0).cgColor, UIColor(red:0.17, green:0.00, blue:1.00, alpha:1.0).cgColor]
+    let warmColor = [UIColor(red:1.00, green:0.51, blue:0.00, alpha:1.0).cgColor, UIColor(red:1.00, green:0.78, blue:0.00, alpha:1.0).cgColor]
+    let hotColor = [UIColor(red:1.00, green:0.17, blue:0.00, alpha:1.0).cgColor, UIColor(red:1.00, green:0.63, blue:0.00, alpha:1.0).cgColor]
+    let subzero = [UIColor(red:0.17, green:0.00, blue:1.00, alpha:0.9).cgColor, UIColor(red:0.00, green:0.65, blue:1.00, alpha:1.0).cgColor]
+    
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     override func awakeFromNib() {

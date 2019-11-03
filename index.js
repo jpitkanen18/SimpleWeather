@@ -33,20 +33,22 @@ app.get("/city=:id&fullData=:bool", async (req, res) => {
     console.log("Sending weather data for " + req.params.id);
     time = time + 500;
     await sleep(time);
-    request(req.params.id, res, req);
+    request(req.params.id, res, req.params.bool);
   } else if (req.params.bool == "true") {
-    request(req.params.id, res, req);
+    request(req.params.id, res, req, req.params.bool);
   }
 });
-async function request(city, res, req) {
+async function request(city, res, bool) {
   var url =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&APPID=" +
     token.token;
   console.log(url);
-  time += 500;
-  await sleep(time);
+  if (bool == "false") {
+    time += 500;
+    await sleep(time);
+  }
   api.open("GET", url, true);
   api.send();
   api.onreadystatechange = function() {

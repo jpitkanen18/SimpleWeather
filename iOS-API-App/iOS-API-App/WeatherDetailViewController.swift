@@ -64,7 +64,7 @@ class WeatherDetailViewController: UIViewController {
                     self.createGradientLayer(colors: tcell.warmColor)
                 case let temp where temp < 0:
                     self.createGradientLayer(colors: tcell.subzero)
-                case let temp where temp > 35:
+                case let temp where temp > 25:
                     self.createGradientLayer(colors: tcell.hotColor)
                 default:
                     self.createGradientLayer(colors: tcell.coldColor)

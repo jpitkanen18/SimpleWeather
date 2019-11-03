@@ -32,4 +32,4 @@ In the iOS app
 
 ## Screenshots(1)
 
-![alt text](https://github.com/jpitkanen18/SimpleWeather/blob/master/screenshots/Screenshot%202019-11-03%at%19.09.20.png?raw=true "Screenshot one(1)")
+![alt text](https://github.com/jpitkanen18/SimpleWeather/blob/master/screenshots/Screenshot%202019-11-03%20at%2019.09.20.png?raw=true "Screenshot one(1)")

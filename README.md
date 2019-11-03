@@ -1,6 +1,6 @@
 # SimpleWeather
-
-[![language](https://img.shields.io/badge/language-Swift%204.2-orange.svg)](https://developer.apple.com/swift/)
+[![API](https://img.shields.io/badge/Node-11.14.0-blue.svg)](https://img.shields.io/badge/api-Nodejs%2011.14.0-blue.svg)
+[![language](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://developer.apple.com/swift/)
 [![platform](https://img.shields.io/badge/iOS-13.0-lightgrey.svg)](https://img.shields.io/badge/iOS-13.0-lightgrey.svg)
 
 Simple weather app with a node API to make it easier to manage

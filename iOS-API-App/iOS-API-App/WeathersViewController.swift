@@ -37,11 +37,14 @@ class WeathersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
     }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print(locations[indexPath.row])
+        print(indexPath.row)
         if (editingStyle == .delete) {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FetchedWeather")
             let container = appDelegate.persistentContainer
@@ -50,12 +53,11 @@ class WeathersViewController: UITableViewController {
                     for object in objects{
                         if object.value(forKey: "cityName") as? String == locations[indexPath.row]{
                             container.viewContext.delete(object)
-                            tableView.beginUpdates()
                             locations.remove(at: indexPath.row)
-                            tableView.deleteRows(at: [indexPath], with: .automatic)
-                            tableView.endUpdates()
                             do{
                                 try container.viewContext.save()
+                                tableView.reloadData()
+                                
                             }
                             catch {
                                 print(error)
@@ -169,6 +171,7 @@ class WeathersViewController: UITableViewController {
                     if let cityName = object.value(forKey: "cityName") as? String, let cityTemp = object.value(forKey: "cityTemp") as? Int{
                         locations.append(cityName)
                         temps.append(cityTemp)
+                        print(locations)
                     }
     
                 }
@@ -185,6 +188,7 @@ class WeathersViewController: UITableViewController {
         catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
+        
     }
-
+    
 }
